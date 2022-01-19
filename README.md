@@ -182,7 +182,7 @@ _Qualquer dúvida ou sugestão, chama no contatinho!_
 - [LinkedIn](https://www.linkedin.com/in/elisabete-a-santos/)
 - [GitHub](https://github.com/elisabetealves)
 -  <a href = "mailto:lizzbeth.lizz.diaz@gmail">Gmail</a>
-- Telefone: (81) 9 9823-8963
+- Telefone: (81) 9 9823-8962
 
 <br>
 
