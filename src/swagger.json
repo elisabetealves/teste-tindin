@@ -1,0 +1,470 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Teste Tindin",
+        "description": " API para cadastrar aulas e comentários",
+        "termsOfService": "http://localhost:7070/terms/",
+        "contact": {
+            "email": "lizzbeth.lizz.diaz@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:7070/",
+            "description": "API teste tindin"
+        }
+    ],
+    "tags": [
+        {
+            "name": "User",
+            "description": "Manipulação das Rotas de usuário"
+        },
+        {
+            "name": "Comments",
+            "description": "Manipulação das Rotas de Comentários"
+        },
+        {
+            "name": "Classes",
+            "description": "Manipulação das Rotas das aulas"
+        }
+    ],
+    "paths": {
+        "/user": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login usuário",
+                "description": "Login usuário",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "404": {
+                        "description": "ERROR",
+                        "content": {}
+                    },
+                    "200": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "objetc",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/classes/comments": {
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Cria um comentário ",
+                "description": "Cria os comentários relacinados as aulas",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Comments"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "404": {
+                        "description": "ERROR",
+                        "content": {}
+                    },
+                    "200": {
+                        "description": "Comentário criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "objetc",
+                                    "$ref": "#/components/schemas/Comments"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Retorna todos os comentários",
+                "description": "Mostra os comentários",
+                "parameters": [
+                    {
+                        "name": "Comentário",
+                        "description": "Retorna todos os comentários cadastrados",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Comments"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Comments"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/{Id}": {
+            "delete": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Deleta comentário por  ID",
+                "description": "Deleta um comentário ",
+                "parameters": [
+                    {
+                        "name": "commentario Id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id do comentário para deletar"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comentário deletado",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "ERROR (Id não encontado)",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/classes": {
+            "post": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Cadastra uma aula ",
+                "description": "Cadastra as aulas ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Classes"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "404": {
+                        "description": "ERROR",
+                        "content": {}
+                    },
+                    "200": {
+                        "description": "Aula cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "objetc",
+                                    "$ref": "#/components/schemas/Classes"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/classes/{id}/like": {
+            "post": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Dar like em uma aula específica",
+                "description": "Dar um like",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "like":{
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK. ",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "ERROR",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/classes/{id}/dislike": {
+            "post": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Retira like de uma aula específica",
+                "description": "Retira um like",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dislike":{
+                                        "type": "number",
+                                        "description": "O número tem que ser negativo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK. ",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "ERROR",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/classes/all": {
+            "get": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Retorna todas as aulas",
+                "description": "Retorna todas as aulas cadastradas",
+                "parameters": [
+                    {
+                        "name": "Aulas",
+                        "description": "Retorna todas as aulas cadastradas",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Classes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Classes"
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
+        },
+        "/classes/{id}": {
+            "get": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Busca por ID",
+                "description": "Retorna uma aula específico por ID",
+                "parameters": [
+                    {
+                        "name": "aula Id",
+                        "in": "path",
+                        "description": "Id da aula para retorno",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Classes"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Atualizaçao dos dados de uma aula cadastrada",
+                "requestBody": {
+                    "description": "Atualiza a entidade aula",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Classes"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "404": {
+                        "description": "Error",
+                        "content": {}
+                    },
+                    "200": {
+                        "description": "OK. Aula atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Classes"
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            },
+            "delete": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Deleta aula por  ID",
+                "description": "Deleta uma aula",
+                "parameters": [
+                    {
+                        "name": "aula Id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id da aula para deletar"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "aula deletada",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "ERROR (Id não encontado)",
+                        "content": {}
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Comments": {
+                "type": "object",
+                "properties": {
+                    "id_class": {
+                        "type": "string"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "date_created": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Classes": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "like": {
+                        "type": "number"
+                    },
+                    "mane": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "video": {
+                        "type": "string"
+                    },
+                    "data_init": {
+                        "type": "number"
+                    },
+                    "data_end": {
+                        "type": "string"
+                    },
+                    "data_create": {
+                        "type": "string"
+                    },
+                    "data_update": {
+                        "type": "string"
+                    },
+                    "total_comments": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}
