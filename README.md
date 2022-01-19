@@ -1,7 +1,7 @@
 
 # 🚀 CRUD - Teste Tindin
 
-### Este é mais um repositório para um teste de back end junior Tindin.
+### Este é um repositório para um teste de back end junior Tindin.
 
 <br>
 
